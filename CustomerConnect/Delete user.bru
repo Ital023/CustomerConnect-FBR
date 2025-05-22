@@ -1,0 +1,17 @@
+meta {
+  name: Delete user
+  type: http
+  seq: 6
+}
+
+delete {
+  url: http://localhost:8080/users/2
+  body: none
+  auth: inherit
+}
+
+body:json {
+  {
+    "age": 22
+  }
+}

@@ -1,0 +1,20 @@
+meta {
+  name: Create customers
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:8080/customers
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "fullName": "zach whitman",
+    "cpf": "123",
+    "email": "zach@gmail.com",
+    "phoneNumber": "1234-567"
+  }
+}
