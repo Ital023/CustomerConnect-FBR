@@ -5,16 +5,14 @@ meta {
 }
 
 get {
-  url: http://localhost:8080/users?page=0&pageSize=10&orderBy=asc&age=18
+  url: http://localhost:8080/customers?email=dylan@gmail.com
   body: none
   auth: inherit
 }
 
 params:query {
-  page: 0
-  pageSize: 10
-  orderBy: asc
-  age: 18
+  email: dylan@gmail.com
+  ~cpf: 123
 }
 
 body:json {
