@@ -5,13 +5,13 @@ meta {
 }
 
 get {
-  url: http://localhost:8080/customers?email=dylan@gmail.com
+  url: http://localhost:8080/customers
   body: none
   auth: inherit
 }
 
 params:query {
-  email: dylan@gmail.com
+  ~email: dylan@gmail.com
   ~cpf: 123
 }
 

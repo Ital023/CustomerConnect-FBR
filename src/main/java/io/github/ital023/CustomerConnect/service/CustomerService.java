@@ -1,6 +1,7 @@
 package io.github.ital023.CustomerConnect.service;
 
 import io.github.ital023.CustomerConnect.controller.dto.CreateCustomerDto;
+import io.github.ital023.CustomerConnect.controller.dto.UpdateCustomerDto;
 import io.github.ital023.CustomerConnect.entity.CustomerEntity;
 import io.github.ital023.CustomerConnect.repository.CustomerRepository;
 import org.springframework.data.domain.Page;
@@ -72,5 +73,28 @@ public class CustomerService {
     }
 
 
+    public Optional<CustomerEntity> updateById(Long customerId, UpdateCustomerDto dto) {
+
+        var customer = customerRepository.findById(customerId);
+
+        if(customer.isPresent()) {
+            updateFields(dto, customer);
+            customerRepository.save(customer.get());
+        }
+
+        return customer;
+    }
+
+    private void updateFields(UpdateCustomerDto dto, Optional<CustomerEntity> customer) {
+        if (hasText(dto.fullName())) {
+            customer.get().setFullName(dto.fullName());
+        }
+        if (hasText(dto.email())) {
+            customer.get().setEmail(dto.email());
+        }
+        if (hasText(dto.phoneNumber())) {
+            customer.get().setPhoneNumber(dto.phoneNumber());
+        }
+    }
 
 }

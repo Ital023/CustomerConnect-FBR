@@ -3,6 +3,7 @@ package io.github.ital023.CustomerConnect.controller;
 import io.github.ital023.CustomerConnect.controller.dto.ApiResponse;
 import io.github.ital023.CustomerConnect.controller.dto.CreateCustomerDto;
 import io.github.ital023.CustomerConnect.controller.dto.PaginationResponse;
+import io.github.ital023.CustomerConnect.controller.dto.UpdateCustomerDto;
 import io.github.ital023.CustomerConnect.entity.CustomerEntity;
 import io.github.ital023.CustomerConnect.service.CustomerService;
 import org.springframework.http.ResponseEntity;
@@ -55,6 +56,17 @@ public class CustomerController {
 
         return user.isPresent() ?
                 ResponseEntity.ok(user.get()) :
+                ResponseEntity.notFound().build();
+    }
+
+    @PutMapping(path = "/{customerId}")
+    public ResponseEntity<CustomerEntity> findById(@PathVariable("customerId") Long customerId,
+                                                   @RequestBody UpdateCustomerDto dto) {
+
+        var customer = customerService.updateById(customerId, dto);
+
+        return customer.isPresent() ?
+                ResponseEntity.noContent().build() :
                 ResponseEntity.notFound().build();
     }
 
